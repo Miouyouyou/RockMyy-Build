@@ -1,0 +1,11 @@
+*.old
+*.bak
+*~
+*.kate-swp
+*.swp
+*#
+\#*
+*.install
+*.install.cmd
+kernel.tar.*
+boot/vmlinuz*
