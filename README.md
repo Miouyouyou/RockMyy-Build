@@ -2,6 +2,14 @@ If you appreciate this project, support me on Patreon !
 
 [![Patreon !](https://raw.githubusercontent.com/Miouyouyou/RockMyy/master/.img/button-patreon.png)](https://www.patreon.com/Miouyouyou)
 
+Warning
+-------
+
+**THIS IS THE TINKERING BRANCH, PROVIDING BUILDS INCORPORATING UNTESTED HACKS FOR ASUS TINKERBOARDS.**
+
+If you're there for standard kernel builds, also usable on Tinkerboards,
+use the [master branch](https://github.com/Miouyouyou/RockMyy-Build)
+
 About
 -----
 
