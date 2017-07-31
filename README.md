@@ -6,7 +6,12 @@ About
 -----
 
 This repository hosts patched mainline kernels for RK3288 built using
-[RockMyy](https://github.com/Miouyouyou/RockMyy).
+the VPU branch of
+[RockMyy](https://github.com/Miouyouyou/RockMyy/tree/VPU).
+
+This branch is made to test the Video Processing Unit driver, in order
+to benefit from hardware accelerated video encoding and decoding
+features.
 
 Some knowledge about your system bootloader configuration is required.
 Generally, the bootloader is configured through /boot/extlinux.conf but
