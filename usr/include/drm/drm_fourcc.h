@@ -142,6 +142,27 @@ extern "C" {
 #define DRM_FORMAT_NV42		fourcc_code('N', 'V', '4', '2') /* non-subsampled Cb:Cr plane */
 
 /*
+ * 2 plane YCbCr MSB aligned
+ * index 0 = Y plane, [15:0] Y:x [10:6] little endian
+ * index 1 = Cb:Cr plane, [31:0] Cb:x:Cr:x [10:6:10:6] little endian
+ */
+#define DRM_FORMAT_P010		fourcc_code('N', 'A', '1', '2') /* 2x2 subsampled Cb:Cr plane 10 bits per channel */
+
+/*
+ * 2 plane YCbCr MSB aligned
+ * index 0 = Y plane, [15:0] Y:x [12:4] little endian
+ * index 1 = Cb:Cr plane, [31:0] Cb:x:Cr:x [12:4:12:4] little endian
+ */
+#define DRM_FORMAT_P012		fourcc_code('P', '0', '1', '2') /* 2x2 subsampled Cb:Cr plane 12 bits per channel */
+
+/*
+ * 2 plane YCbCr MSB aligned
+ * index 0 = Y plane, [15:0] Y little endian
+ * index 1 = Cb:Cr plane, [31:0] Cb:Cr [16:16] little endian
+ */
+#define DRM_FORMAT_P016		fourcc_code('P', '0', '1', '6') /* 2x2 subsampled Cb:Cr plane 16 bits per channel */
+
+/*
  * 3 plane YCbCr
  * index 0: Y plane, [7:0] Y
  * index 1: Cb plane, [7:0] Cb
@@ -183,6 +204,7 @@ extern "C" {
 #define DRM_FORMAT_MOD_VENDOR_QCOM    0x05
 #define DRM_FORMAT_MOD_VENDOR_VIVANTE 0x06
 #define DRM_FORMAT_MOD_VENDOR_BROADCOM 0x07
+#define DRM_FORMAT_MOD_VENDOR_ROCKCHIP 0x07 // Added by a patch
 /* add more to the end as needed */
 
 #define fourcc_mod_code(vendor, val) \
@@ -306,6 +328,16 @@ extern "C" {
  * therefore halved compared to the non-split super-tiled layout.
  */
 #define DRM_FORMAT_MOD_VIVANTE_SPLIT_SUPER_TILED fourcc_mod_code(VIVANTE, 4)
+
+/*
+ * Rockchip 10bits color depth layout
+ *
+ * It can be regarded as a compact variant of P010. The 6 bits set to zero
+ * in P010 are used to store the next pixel in this format. The stride should
+ * be aligned with 8 bit(a byte), so there would be zero bits at the last byte
+ * if the pixel can't fill it. And this format is not a tiling layout.
+ */
+#define DRM_FORMAT_MOD_ROCKCHIP_10BITS fourcc_mod_code(ROCKCHIP, 1)
 
 /* NVIDIA Tegra frame buffer modifiers */
 
