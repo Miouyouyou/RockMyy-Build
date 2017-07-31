@@ -428,3 +428,4 @@ kernel/sound/soc/dwc/designware_i2s.ko:
 kernel/sound/hda/snd-hda-core.ko:
 kernel/sound/ac97_bus.ko:
 kernel/net/bluetooth/bnep/bnep.ko:
+extra/rk-vcodec.ko:
