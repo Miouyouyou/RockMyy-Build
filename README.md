@@ -9,6 +9,10 @@ This repository hosts patched mainline kernels for RK3288 built using
 the VPU branch of
 [RockMyy](https://github.com/Miouyouyou/RockMyy/tree/VPU).
 
+That said, the VPU driver itself is
+[currently broken](https://github.com/Miouyouyou/rockchip-vcodec/wiki).
+So this branch is hold until the VPU driver gets fixed.
+
 This branch is made to test the Video Processing Unit driver, in order
 to benefit from hardware accelerated video encoding and decoding
 features.
