@@ -1,6 +1,16 @@
 If you appreciate this project, support me on Patreon !
 
+[![Pledgie !](https://pledgie.com/campaigns/32702.png)](https://pledgie.com/campaigns/32702)
 [![Patreon !](https://raw.githubusercontent.com/Miouyouyou/RockMyy/master/.img/button-patreon.png)](https://www.patreon.com/Miouyouyou)
+
+About this branch
+-----------------
+
+This branch focus is testing the VPU driver !
+It's currently working with MPP<->MPV when playing WebM files.
+
+However I need to have more testers in order to be sure that
+everything is working correctly !
 
 About
 -----
