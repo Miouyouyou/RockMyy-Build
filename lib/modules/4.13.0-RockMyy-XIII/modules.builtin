@@ -187,6 +187,7 @@ kernel/drivers/input/serio/serio.ko
 kernel/drivers/input/serio/serport.ko
 kernel/drivers/input/serio/libps2.ko
 kernel/drivers/input/serio/serio_raw.ko
+kernel/drivers/iommu/iova.ko
 kernel/drivers/leds/led-class.ko
 kernel/drivers/leds/leds-gpio.ko
 kernel/drivers/leds/trigger/ledtrig-timer.ko
