@@ -142,27 +142,6 @@ extern "C" {
 #define DRM_FORMAT_NV42		fourcc_code('N', 'V', '4', '2') /* non-subsampled Cb:Cr plane */
 
 /*
- * 2 plane YCbCr MSB aligned
- * index 0 = Y plane, [15:0] Y:x [10:6] little endian
- * index 1 = Cb:Cr plane, [31:0] Cb:x:Cr:x [10:6:10:6] little endian
- */
-#define DRM_FORMAT_P010		fourcc_code('N', 'A', '1', '2') /* 2x2 subsampled Cb:Cr plane 10 bits per channel */
-
-/*
- * 2 plane YCbCr MSB aligned
- * index 0 = Y plane, [15:0] Y:x [12:4] little endian
- * index 1 = Cb:Cr plane, [31:0] Cb:x:Cr:x [12:4:12:4] little endian
- */
-#define DRM_FORMAT_P012		fourcc_code('P', '0', '1', '2') /* 2x2 subsampled Cb:Cr plane 12 bits per channel */
-
-/*
- * 2 plane YCbCr MSB aligned
- * index 0 = Y plane, [15:0] Y little endian
- * index 1 = Cb:Cr plane, [31:0] Cb:Cr [16:16] little endian
- */
-#define DRM_FORMAT_P016		fourcc_code('P', '0', '1', '6') /* 2x2 subsampled Cb:Cr plane 16 bits per channel */
-
-/*
  * 3 plane YCbCr
  * index 0: Y plane, [7:0] Y
  * index 1: Cb plane, [7:0] Cb
@@ -206,6 +185,8 @@ extern "C" {
 #define DRM_FORMAT_MOD_VENDOR_BROADCOM 0x07
 /* add more to the end as needed */
 
+#define DRM_FORMAT_RESERVED	      ((1ULL << 56) - 1)
+
 #define fourcc_mod_code(vendor, val) \
 	((((__u64)DRM_FORMAT_MOD_VENDOR_## vendor) << 56) | (val & 0x00ffffffffffffffULL))
 
@@ -216,6 +197,15 @@ extern "C" {
  * similar to the fourcc codes above. drm_fourcc.h is considered the
  * authoritative source for all of these.
  */
+
+/*
+ * Invalid Modifier
+ *
+ * This modifier can be used as a sentinel to terminate the format modifiers
+ * list, or to initialize a variable with an invalid modifier. It might also be
+ * used to report an error back to userspace for certain APIs.
+ */
+#define DRM_FORMAT_MOD_INVALID	fourcc_mod_code(NONE, DRM_FORMAT_RESERVED)
 
 /*
  * Linear Layout
@@ -272,6 +262,26 @@ extern "C" {
  * in pixel depends on the pixel depth.
  */
 #define I915_FORMAT_MOD_Yf_TILED fourcc_mod_code(INTEL, 3)
+
+/*
+ * Intel color control surface (CCS) for render compression
+ *
+ * The framebuffer format must be one of the 8:8:8:8 RGB formats.
+ * The main surface will be plane index 0 and must be Y/Yf-tiled,
+ * the CCS will be plane index 1.
+ *
+ * Each CCS tile matches a 1024x512 pixel area of the main surface.
+ * To match certain aspects of the 3D hardware the CCS is
+ * considered to be made up of normal 128Bx32 Y tiles, Thus
+ * the CCS pitch must be specified in multiples of 128 bytes.
+ *
+ * In reality the CCS tile appears to be a 64Bx64 Y tile, composed
+ * of QWORD (8 bytes) chunks instead of OWORD (16 bytes) chunks.
+ * But that fact is not relevant unless the memory is accessed
+ * directly.
+ */
+#define I915_FORMAT_MOD_Y_TILED_CCS	fourcc_mod_code(INTEL, 4)
+#define I915_FORMAT_MOD_Yf_TILED_CCS	fourcc_mod_code(INTEL, 5)
 
 /*
  * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
